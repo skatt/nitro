@@ -9,7 +9,7 @@ render_element(Record) ->
         undefined -> ignore;
         Postback -> nitro:wire(#event { type=change, postback=Postback, target=Id, source=Record#checkbox.source, delegate=Record#checkbox.delegate })
     end,
-   Label = [ wf_tags:emit_tag(<<"input">>, [], [
+   wf_tags:emit_tag(<<"input">>, [], [
       % global
       {<<"accesskey">>, Record#checkbox.accesskey},
       {<<"class">>, Record#checkbox.class},
@@ -36,9 +36,10 @@ render_element(Record) ->
       {<<"required">>, if Record#checkbox.required == true -> "required"; true -> undefined end},
       {<<"type">>, <<"checkbox">>},
       {<<"value">>, Record#checkbox.value} | Record#checkbox.data_fields
-      ]),
-      case Record#checkbox.body of undefined -> []; B -> B end ],
-    wf_tags:emit_tag(<<"label">>, nitro:render(Label), [
-        {<<"class">>, Record#checkbox.class},
-        {<<"style">>, Record#checkbox.style},
-        {<<"for">>, Id} ]).
+      ]).
+%,
+%      case Record#checkbox.body of undefined -> []; B -> B end ],
+%    wf_tags:emit_tag(<<"label">>, nitro:render(Label), [
+%        {<<"class">>, Record#checkbox.class},
+%        {<<"style">>, Record#checkbox.style},
+%        {<<"for">>, Id} ]).
