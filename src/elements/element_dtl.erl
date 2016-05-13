@@ -4,11 +4,7 @@
 -compile(export_all).
 
 render_element(Record=#dtl{}) ->
-    M = case Record#dtl.ext of
-            ".css" -> list_to_atom(nitro:to_list(Record#dtl.file) ++ "_style");
-            _ -> list_to_atom(nitro:to_list(Record#dtl.file) ++ "_view")
-        end,
-            
+    M = list_to_atom(nitro:to_list(Record#dtl.file) ++ "_view"),
     %File = case code:lib_dir(nitro:to_atom(Record#dtl.app)) of
                 %{error,bad_name} -> nitro:to_list(Record#dtl.app);
                 %A -> A end ++ "/" ++ nitro:to_list(Record#dtl.folder)
