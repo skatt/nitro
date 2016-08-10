@@ -10,8 +10,7 @@ render_element(Record) ->
           ID = case Record#search.id of
             undefined -> nitro:temp_id();
             I -> I end,
-          nitro:wire(#event{type=click, postback=Postback, target=ID,
-                  source=Record#search.source, delegate=Record#search.delegate }),
+          nitro:wire(#event{type=click, postback=Postback, target=ID, source=Record#search.source, delegate=Record#search.delegate }),
           ID end,
     List = [
       %global

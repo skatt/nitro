@@ -22,8 +22,11 @@ display_property({_, []}) -> [];
 display_property({<<"class">>=Id, Value}) -> prop({Id,Value});
 display_property({<<"data-toggle">>=Id, Value}) -> prop({Id,Value});
 display_property({Prop, Value}) -> [<<" ">>, nitro:to_binary(Prop), <<"=\"">>, nitro:to_binary(Value), <<"\"">>];
-display_property(Id) when is_binary(Id) -> [<<" ">>,Id].
+display_property(Id) -> prop(Id).
 
 prop({Id, Value}) when is_atom(Value) -> [<<" ">>,Id,<<"=\"">>, nitro:to_binary(Value), <<"\"">>];
 prop({Id, Value}) when is_binary(Value) -> [<<" ">>,Id,<<"=\"">>, Value, <<"\"">>];
-prop({Id, Value}) -> [<<" ">>,Id,<<"=\"">>, string:join([nitro:to_list(V) || V <-Value ]," "), <<"\"">>].
+prop({Id, Value}) -> [<<" ">>,Id,<<"=\"">>, string:join([nitro:to_list(V) || V <-Value ]," "), <<"\"">>];
+prop(Value) when is_atom(Value) -> [<<" ">>,nitro:to_binary(Value)];
+prop(Value) when is_binary(Value) -> [<<" ">>,Value];
+prop(_) -> [].
