@@ -10,3 +10,4 @@ render_action(Record) ->
         Single -> erlang:put(state,Single) end,
     Events = case Record#transfer.events of E when is_list(E) -> E; E -> [E] end,
     [ self() ! M || M <- Events ], ok.
+``

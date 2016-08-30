@@ -8,7 +8,7 @@ render_element(Record) ->
         undefined -> Record#link.id;
         Postback ->
             ID = case Record#link.id of undefined -> nitro:temp_id(); I -> I end,
-            nitro:wire(#event{ type='click touchend',postback=Postback,target=ID,
+            nitro:wire(#event{ type=click,postback=Postback,target=ID,
                             source=Record#link.source,delegate=Record#link.delegate,validation=Record#link.validate}),
             ID end,
     List = [
