@@ -63,22 +63,6 @@ init(Id,#calendar{minDate=Min,maxDate=Max,lang=Lang,format=Form,value=Value,onSe
     Bound =  case Boun of undefined -> "true"; _ -> nitro:to_list(Boun) end,
     Container =  case Cont of undefined -> " "; _ -> nitro:f(", container: document.getElementById('~s')",[Cont]) end,
     nitro:wire(nitro:f(
-        "pickers['~s'] = new Pikaday({
-            field: document.getElementById('~s'),
-            firstDay: 1,
-            i18n: ~s,
-            defaultDate: ~s,
-            setDefaultDate: true,
-            minDate: ~s,
-            maxDate: ~s,
-            format: '~s',
-            onSelect: ~s,
-            disableDayFn: ~s,
-            position: '~s',
-            reposition: ~s,
-            yearRange: ~s,
-            bound: ~s
-            ~s
-        });",
+        "pickers['~s'] = new Pikaday({ field: document.getElementById('~s'), firstDay: 1, i18n: ~s, defaultDate: ~s, setDefaultDate: true, minDate: ~s, maxDate: ~s, format: '~s', onSelect: ~s, disableDayFn: ~s, position: '~s', reposition: ~s, yearRange: ~s, bound: ~s ~s });",
         [ID,ID,I18n,DefaultDate,MinDate,MaxDate,Format,OnSelect,DisDay,Position,Reposition,nitro:to_list(YearRange),Bound,Container]
     )).
