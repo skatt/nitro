@@ -28,12 +28,12 @@ render_element(Record) ->
       {<<"translate">>, case Record#checkbox.contenteditable of "yes" -> "yes"; "no" -> "no"; _ -> undefined end},      
       % spec
       {<<"autofocus">>,Record#checkbox.autofocus},
-      {<<"checked">>, if Record#checkbox.checked==true -> <<"checked">>; true -> undefined end},
+      {<<"checked">>, if Record#checkbox.checked==true -> <<"checked">>; _ -> undefined end},
       {<<"data-toggle">>, <<"checkbox">>},
-      {<<"disabled">>, if Record#checkbox.disabled == true -> "disabled"; true -> undefined end},
+      {<<"disabled">>, if Record#checkbox.disabled == true -> "disabled"; _ -> undefined end},
       {<<"form">>, Record#checkbox.form},
       {<<"name">>, Record#checkbox.name},            
-      {<<"required">>, if Record#checkbox.required == true -> "required"; true -> undefined end},
+      {<<"required">>, if Record#checkbox.required == true -> "required"; _ -> undefined end},
       {<<"type">>, <<"checkbox">>},
       {<<"value">>, Record#checkbox.value} | Record#checkbox.data_fields
       ]).
