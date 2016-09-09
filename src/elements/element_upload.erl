@@ -4,7 +4,7 @@
 
 render_element(#upload{id=Id} = U) ->
     Uid = case Id of undefined -> wf:temp_id(); I -> I end,
-    bind(ftp_open,  click,  "qi('upload').click(); e.preventDefault();"),
+    bind(ftp_open,  click,  nitro:f("qi('~s').click(); e.preventDefault();",[Uid])),
     bind(ftp_start, click,  "ftp.start();"),
     bind(ftp_stop,  click,  "ftp.stop();"),
     bind(nitro:to_atom(Uid), change, "ftp.init(this.files[0],false);"),
